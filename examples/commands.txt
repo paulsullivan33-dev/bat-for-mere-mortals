@@ -1,0 +1,92 @@
+bat — the distilled commands
+====================================================================
+Placeholders: <file> is a file of yours;
+<lang> is a language name from
+bat --list-languages.
+
+FIRST LOOKS (chapters 3-4)
+--------------------------------------------------------------------
+  bat --version                    # the check every install
+                                   # must pass (batcat on
+                                   # Debian/Ubuntu)
+  bat <file>                       # decorated on a terminal,
+                                   # plain in a pipe
+  bat <file1> <file2>              # each gets its own frame
+  bat <file> | wc -c               # proves the pipe is plain:
+                                   # same count as the file
+
+PIPES AND PAGERS (chapter 5)
+--------------------------------------------------------------------
+  bat --paging=never <file>        # print straight, no pager
+  bat -P <file>                    # the same, shorter
+  bat --color=always <file>        # force colour into a pipe
+  bat --decorations=always <file>  # force the frame into a pipe
+  PAGER=most bat <file>            # choose a pager for one run
+  BAT_PAGER=most bat <file>        # bat's own variable wins
+                                   # over PAGER
+
+STYLES (chapter 6)
+--------------------------------------------------------------------
+  bat --style=plain <file>         # text only, still coloured
+  bat -p <file>                    # the same, shorter
+  bat --style=numbers <file>       # line numbers only
+  bat -n <file>                    # the same, shorter
+  bat --style=header,grid <file>   # components combine by name
+  bat --style=full <file>          # the whole bundle, with
+                                   # header, size, grid, numbers
+
+RANGES AND HIGHLIGHTS (chapter 7)
+--------------------------------------------------------------------
+  bat --line-range 8:11 <file>     # just those lines
+  bat -r :11 <file>                # from the start; 8: means
+                                   # to the end
+  bat -r 2:4 -r 12:14 <file>       # two islands, snip line
+                                   # between them
+  bat --highlight-line 8 <file>    # paint one line; -H works,
+                                   # and the option repeats
+  bat --tabs=4 <file>              # expand tabs to 4 columns
+  bat --show-all <file>            # draw tabs and line ends;
+                                   # short form -A
+
+LANGUAGES (chapter 8)
+--------------------------------------------------------------------
+  bat --list-languages             # the map: 183 in the lab's
+                                   # build, with the extensions
+                                   # each language claims
+  bat --language <lang> <file>     # force the guess, once;
+                                   # short form -l
+  bat --language python            # read standard input as
+                                   # Python (no file argument)
+  cat <file> | bat --file-name=x.py
+                                   # lend a stream a name, for
+                                   # the header and detection
+
+THEMES (chapter 9)
+--------------------------------------------------------------------
+  bat --list-themes                # 28 palettes in the lab's
+                                   # build
+  bat --theme=GitHub <file>        # repaint for one run
+  BAT_THEME=GitHub bat <file>      # repaint for the session
+
+GIT (chapter 10)
+--------------------------------------------------------------------
+  bat --diff <file>                # changed lines plus two
+                                   # lines of context, in a
+                                   # repository, unstaged only
+  bat --diff --diff-context=1 <file>
+                                   # context: one line instead
+  git status                       # where --diff's blind
+                                   # spots live: staged and
+                                   # untracked work
+
+MAKING IT YOURS (chapter 11)
+--------------------------------------------------------------------
+  bat --config-file                # ask where the config is
+  bat --generate-config-file       # write the commented
+                                   # skeleton there
+  # in the config file, one option per line:
+  --theme="GitHub"
+  --style="numbers"
+  --map-syntax "stocktake:csv"
+  BAT_STYLE=plain bat <file>       # environment beats file;
+                                   # command line beats both

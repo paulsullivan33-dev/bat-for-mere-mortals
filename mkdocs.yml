@@ -1,0 +1,28 @@
+site_name: bat for Mere Mortals
+site_description: A cat with colour and a memory of your files changing. Reading code with syntax highlighting, line numbers and a frame, asking for just the lines you need, and seeing what git says you changed, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/bat-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What bat Is: what-bat-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing bat: installing-bat.md
+  - Your First Look: your-first-look.md
+  - Pipes and Pagers: pipes-and-pagers.md
+  - Styles and the Frame: styles-and-the-frame.md
+  - Ranges and Highlights: ranges-and-highlights.md
+  - Languages and Detection: languages-and-detection.md
+  - Themes: themes.md
+  - Seeing What Changed: git-changes.md
+  - Making It Yours: making-it-yours.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

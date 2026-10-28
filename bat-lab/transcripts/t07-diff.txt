@@ -1,0 +1,99 @@
+$ cd repo
+$ git init -q
+$ git config user.name "Bat Lab"
+$ git config user.email "lab@example.com"
+$ git add app.js
+$ git commit -q -m "Add the greeter"
+$ ./apply-changes.sh
+$ git status --short
+ M app.js
+?? apply-changes.sh
+$ git --no-pager diff
+diff --git a/app.js b/app.js
+index 50a0cb8..c027ef8 100644
+--- a/app.js
++++ b/app.js
+@@ -1,10 +1,11 @@
+ // A tiny greeter for the lab.
+-const visitors = ["sam", "jo", "pri"];
++const visitors = ["sam", "jo", "max"];
+ 
+ function greet(name) {
+-  return `Hello, ${name}!`;
++  return `Welcome, ${name}!`;
+ }
+ 
+ for (const name of visitors) {
+   console.log(greet(name));
+ }
++console.log("All greeted.");
+$ bat --diff app.js
+// A tiny greeter for the lab.
+const visitors = ["sam", "jo", "max"];
+
+function greet(name) {
+  return `Welcome, ${name}!`;
+}
+
+  console.log(greet(name));
+}
+console.log("All greeted.");
+$ bat --diff --decorations=always app.js | ../render.sh
+───────┬────────────────────────────────────────────────────────────────────────
+       │ File: app.js
+───────┼────────────────────────────────────────────────────────────────────────
+   1   │ // A tiny greeter for the lab.
+   2 ~ │ const visitors = ["sam", "jo", "max"];
+   3   │ 
+   4   │ function greet(name) {
+   5 ~ │   return `Welcome, ${name}!`;
+   6   │ }
+   7   │ 
+ ...   │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ 8< ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+   9   │   console.log(greet(name));
+  10   │ }
+  11 + │ console.log("All greeted.");
+───────┴────────────────────────────────────────────────────────────────────────
+$ bat --diff --color=always app.js | grep -a '33m~' | sed -n l | cut -c1-140
+\033[38;5;246m   2\033[0m \033[33m~\033[0m \033[38;5;246m\342\224\202\
+\033[0m \033[38;5;81mconst\033[0m\033[38;5;231m \033[0m\033[38;5;231m\
+visitors\033[0m\033[38;5;231m \033[0m\033[38;5;203m=\033[0m\033[38;5;\
+231m \033[0m\033[38;5;231m[\033[0m\033[38;5;186m"\033[0m\033[38;5;186\
+msam\033[0m\033[38;5;186m"\033[0m\033[38;5;231m, \033[0m\033[38;5;186\
+m"\033[0m\033[38;5;186mjo\033[0m\033[38;5;186m"\033[0m\033[38;5;231m,\
+ \033[0m\033[38;5;186m"\033[0m\033[38;5;186mmax\033[0m\033[38;5;186m"\
+\033[0m\033[38;5;231m]\033[0m\033[38;5;231m;\033[0m$
+\033[38;5;246m   5\033[0m \033[33m~\033[0m \033[38;5;246m\342\224\202\
+\033[0m \033[38;5;231m  \033[0m\033[38;5;203mreturn\033[0m\033[38;5;2\
+31m \033[0m\033[38;5;203m`\033[0m\033[38;5;186mW\033[0m\033[38;5;186m\
+e\033[0m\033[38;5;186ml\033[0m\033[38;5;186mc\033[0m\033[38;5;186mo\
+\033[0m\033[38;5;186mm\033[0m\033[38;5;186me\033[0m\033[38;5;186m,\
+\033[0m\033[38;5;186m \033[0m\033[38;5;203m${\033[0m\033[38;5;231mnam\
+e\033[0m\033[38;5;203m}\033[0m\033[38;5;186m!\033[0m\033[38;5;203m`\
+\033[0m\033[38;5;231m;\033[0m$
+$ bat --diff --color=always app.js | grep -a 'All greeted' | sed -n l | cut -c1-140
+\033[38;5;246m  11\033[0m \033[32m+\033[0m \033[38;5;246m\342\224\202\
+\033[0m \033[38;5;149mconsole\033[0m\033[38;5;231m.\033[0m\033[38;5;8\
+1mlog\033[0m\033[38;5;231m(\033[0m\033[38;5;186m"\033[0m\033[38;5;186\
+mAll greeted.\033[0m\033[38;5;186m"\033[0m\033[38;5;231m)\033[0m\033[\
+38;5;231m;\033[0m$
+$ bat --diff --diff-context=1 app.js
+// A tiny greeter for the lab.
+const visitors = ["sam", "jo", "max"];
+
+function greet(name) {
+  return `Welcome, ${name}!`;
+}
+}
+console.log("All greeted.");
+$ git add app.js
+$ git status --short
+M  app.js
+?? apply-changes.sh
+$ bat --diff app.js; echo "exit code: $?"
+exit code: 0
+$ cd ..
+$ cd repo
+$ bat --diff apply-changes.sh; echo "exit code: $?"
+exit code: 0
+$ cd ..

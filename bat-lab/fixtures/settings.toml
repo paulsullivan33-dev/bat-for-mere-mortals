@@ -1,0 +1,12 @@
+# Settings for a small (imaginary) workshop app.
+title = "Workshop Notes"
+max_items = 40
+prices_visible = true
+
+[owner]
+name = "A. Keeper"
+member_since = 2021-03-14
+
+[alerts]
+low_stock = 5
+email = "keeper@example.com"

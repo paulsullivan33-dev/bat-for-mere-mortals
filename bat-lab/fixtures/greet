@@ -1,0 +1,9 @@
+# A tiny greeter with no name tag: no extension, no first line
+# that says what language it is written in.
+
+def greet(name):
+    return "Hello, " + name + "!"
+
+
+print(greet("world"))
+print(greet("reader"))

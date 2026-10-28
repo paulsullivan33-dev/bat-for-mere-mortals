@@ -1,0 +1,53 @@
+$ bat --config-file
+/home/hatch/workspace/build-check/bat-scratch/labrun/xdg-empty/bat/config
+$ bat --config-dir
+/home/hatch/workspace/build-check/bat-scratch/labrun/xdg-empty/bat
+$ export XDG_CONFIG_HOME=$PWD/xdg
+$ bat --generate-config-file
+Success! Config file written to /home/hatch/workspace/build-check/bat-scratch/labrun/xdg/bat/config
+$ cat xdg/bat/config
+# This is `bat`s configuration file. Each line either contains a comment or
+# a command-line option that you want to pass to `bat` by default. You can
+# run `bat --help` to get a list of all possible configuration options.
+
+# Specify desired highlighting theme (e.g. "TwoDark"). Run `bat --list-themes`
+# for a list of all available themes
+#--theme="TwoDark"
+
+# Enable this to use italic text on the terminal. This is not supported on all
+# terminal emulators (like tmux, by default):
+#--italic-text=always
+
+# Uncomment the following line to disable automatic paging:
+#--paging=never
+
+# Uncomment the following line if you are using less version >= 551 and want to
+# enable mouse scrolling support in `bat` when running inside tmux. This might
+# disable text selection, unless you press shift.
+#--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+
+# Syntax mappings: map a certain filename pattern to a language.
+#   Example 1: use the C++ syntax for Arduino .ino files
+#   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
+#--map-syntax "*.ino:C++"
+#--map-syntax ".ignore:Git Ignore"
+$ printf -- '--theme="GitHub"\n--style="numbers"\n' > xdg/bat/config
+$ cat xdg/bat/config
+--theme="GitHub"
+--style="numbers"
+$ bat --color=always fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;238m   7\033[0m \033[38;5;125mdef\033[0m\033[38;5;236m \033\
+[0m\033[38;5;97mfarewell\033[0m\033[38;5;236m(\033[0m\033[38;5;31mnam\
+e\033[0m\033[38;5;236m)\033[0m\033[38;5;236m:\033[0m$
+$ BAT_STYLE=plain bat --color=always fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;125mdef\033[0m\033[38;5;236m \033[0m\033[38;5;97mfarewell\
+\033[0m\033[38;5;236m(\033[0m\033[38;5;31mname\033[0m\033[38;5;236m)\
+\033[0m\033[38;5;236m:\033[0m$
+$ bat --color=always --theme="Monokai Extended" fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;246m   7\033[0m \033[38;5;203mdef\033[0m\033[38;5;231m \033\
+[0m\033[38;5;149mfarewell\033[0m\033[38;5;231m(\033[0m\033[38;5;208mn\
+ame\033[0m\033[38;5;231m)\033[0m\033[38;5;231m:\033[0m$
+$ printf -- '--map-syntax "stocktake:csv"\n' >> xdg/bat/config
+$ bat --color=always --style=plain fixtures/stocktake | sed -n '2p' | sed -n l | cut -c1-140
+\033[38;5;31mA1\033[0m\033[38;5;236m,\033[0m\033[38;5;31menvelopes\
+\033[0m\033[38;5;236m,\033[0m\033[38;5;31m230\033[0m$

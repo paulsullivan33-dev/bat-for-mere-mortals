@@ -1,0 +1,65 @@
+The lab — one release binary, one machine, nobody else's files
+====================================================================
+
+The lab is bat as its project ships it: the
+official release binary, bat 0.26.1
+(bat-v0.26.1-x86_64-unknown-linux-gnu.tar.gz
+from the sharkdp/bat GitHub releases), run
+from a scratch folder on the build machine
+(an Ubuntu 24.04 sandbox, 2 CPUs, 7.7 GB
+RAM) rather than installed system-wide.
+Companions: less 590 (bat's default pager)
+and git 2.43.0.
+
+  * Fixtures written for the guide
+    (bat-lab/fixtures/): a Python farewell
+    script, a Rust greeting, a JavaScript
+    greeter, a TOML settings file for an
+    imaginary workshop app, Markdown
+    packing notes, a stationery CSV, a
+    tab-separated price list, an
+    extensionless shell script identified
+    only by its shebang, a syntactically
+    broken Python file — and two files in
+    disguise: a Python program with no
+    extension and no shebang, and CSV data
+    with no extension, which between them
+    catch the language detector out.
+
+  * Three helper scripts (bat-lab/):
+    render.sh strips ANSI escapes so
+    decorated output can be printed as
+    text; pager-spy.sh is a pretend pager
+    that records being called and saves
+    what it is handed; pty-run.sh runs a
+    command under a real terminal via
+    script(1), because an interactive
+    pager leaves no other evidence.
+
+  * A throwaway git repository
+    (bat-lab/repo/): one committed
+    greeter, then three small edits made
+    by the shipped apply-changes.sh —
+    and then staged, to demonstrate
+    exactly where bat --diff stops
+    seeing them.
+
+  * Settings isolation: every run except
+    the configuration chapter's own was
+    made with XDG_CONFIG_HOME pointed at
+    an empty folder, so no stray config
+    could leak into an unrelated
+    transcript. Chapter 11's transcripts
+    therefore show lab paths; the chapter
+    text explains the substitution.
+
+Transcripts in bat-lab/transcripts/ are
+the evidence for every claim in the
+guide: t00 versions, t01 first looks and
+the byte-identical pipe, t02 the pager
+spy, t03 styles, t04 ranges, highlights,
+tabs and --show-all, t05 the language
+map and stdin, t90 the detection trap,
+t06 themes, t07 git changes and their
+blind spots, t08 configuration layers,
+t91 the limits exhibits.

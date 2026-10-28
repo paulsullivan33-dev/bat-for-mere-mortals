@@ -1,0 +1,31 @@
+$ bat --list-languages | wc -l
+183
+$ bat --list-languages | grep -E '^(Python|Rust|TOML|Markdown|Separated Values|Bourne)' | cut -c1-80
+Bourne Again Shell (bash):sh,bash,zsh,ash,.bash_aliases,.bash_completions,.bash_
+Markdown:md,mdown,markdown,markdn,*.mkd
+Python:py,py3,pyw,pyi,pyx,pyx.in,pxd,pxd.in,pxi,pxi.in,rpy,cpy,SConstruct,Sconst
+Rust:rs,*.ron
+Separated Values:csv
+TOML:toml,tml,Cargo.lock,Gopkg.lock,Pipfile,pdm.lock,poetry.lock,uv.lock,/usr/sh
+$ bat --style=plain --color=always fixtures/app.js | sed -n '4p' | sed -n l | cut -c1-110
+\033[38;5;81mfunction\033[0m\033[38;5;149m \033[0m\033[38;5;149mgreet\
+\033[0m\033[38;5;231m(\033[0m\033[38;5;208mname\033[0m\033[38;5;231m)\
+\033[0m\033[38;5;231m \033[0m\033[38;5;231m{\033[0m$
+$ bat --style=plain --color=always fixtures/settings.toml | sed -n '7p' | sed -n l | cut -c1-110
+\033[38;5;203mname\033[0m\033[38;5;231m \033[0m\033[38;5;231m=\033[0m\
+\033[38;5;231m \033[0m\033[38;5;186m"\033[0m\033[38;5;186mA. Keeper\
+\033[0m\033[38;5;186m"\033[0m$
+$ bat --style=plain --color=always fixtures/notes.md | sed -n '1p' | sed -n l | cut -c1-110
+\033[38;5;208m#\033[0m\033[38;5;208m \033[0m\033[38;5;208mPacking not\
+es\033[0m$
+$ bat --style=plain --color=always fixtures/deploy | sed -n '8p' | sed -n l | cut -c1-110
+\033[38;5;81mecho\033[0m\033[38;5;231m \033[0m\033[38;5;231m"\033[0m\
+\033[38;5;186mDeploying \033[0m\033[38;5;231m$\033[0m\033[38;5;231mSR\
+C\033[0m\033[38;5;186m to \033[0m\033[38;5;231m$\033[0m\033[38;5;231m\
+DEST\033[0m\033[38;5;231m"\033[0m$
+$ echo 'print("piped in")' | bat --language python --color=always --style=header,numbers | ./render.sh
+     STDIN
+   1 print("piped in")
+$ { echo 'def hi():'; echo '    return "hi"'; } | bat --file-name=greet.py --color=always --style=plain | sed -n '1p' | sed -n l | cut -c1-110
+\033[38;5;203mdef\033[0m\033[38;5;231m \033[0m\033[38;5;149mhi\033[0m\
+\033[38;5;231m(\033[0m\033[38;5;231m)\033[0m\033[38;5;231m:\033[0m$

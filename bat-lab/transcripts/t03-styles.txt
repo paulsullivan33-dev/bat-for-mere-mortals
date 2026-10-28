@@ -1,0 +1,92 @@
+$ bat --decorations=always --style=plain --terminal-width=64 fixtures/hello.rs | ./render.sh
+fn main() {
+    let visitor = "world";
+    println!("Hello, {}!", visitor);
+
+    for i in 1..=3 {
+        println!("Count: {}", i);
+    }
+}
+$ bat --decorations=always --style=numbers --terminal-width=64 fixtures/hello.rs | ./render.sh
+   1 fn main() {
+   2     let visitor = "world";
+   3     println!("Hello, {}!", visitor);
+   4 
+   5     for i in 1..=3 {
+   6         println!("Count: {}", i);
+   7     }
+   8 }
+$ bat --decorations=always --style=grid --terminal-width=64 fixtures/hello.rs | ./render.sh
+────────────────────────────────────────────────────────────────
+fn main() {
+    let visitor = "world";
+    println!("Hello, {}!", visitor);
+
+    for i in 1..=3 {
+        println!("Count: {}", i);
+    }
+}
+────────────────────────────────────────────────────────────────
+$ bat --decorations=always --style=header --terminal-width=64 fixtures/hello.rs | ./render.sh
+File: fixtures/hello.rs
+fn main() {
+    let visitor = "world";
+    println!("Hello, {}!", visitor);
+
+    for i in 1..=3 {
+        println!("Count: {}", i);
+    }
+}
+$ bat --decorations=always --style=header,grid --terminal-width=64 fixtures/hello.rs | ./render.sh
+────────────────────────────────────────────────────────────────
+File: fixtures/hello.rs
+────────────────────────────────────────────────────────────────
+fn main() {
+    let visitor = "world";
+    println!("Hello, {}!", visitor);
+
+    for i in 1..=3 {
+        println!("Count: {}", i);
+    }
+}
+────────────────────────────────────────────────────────────────
+$ bat --decorations=always --style=full --terminal-width=64 fixtures/hello.rs | ./render.sh
+─────┬──────────────────────────────────────────────────────────
+     │ File: fixtures/hello.rs
+     │ Size: 140 B
+─────┼──────────────────────────────────────────────────────────
+   1 │ fn main() {
+   2 │     let visitor = "world";
+   3 │     println!("Hello, {}!", visitor);
+   4 │ 
+   5 │     for i in 1..=3 {
+   6 │         println!("Count: {}", i);
+   7 │     }
+   8 │ }
+─────┴──────────────────────────────────────────────────────────
+$ bat --decorations=always -n --terminal-width=64 fixtures/hello.rs | ./render.sh
+   1 fn main() {
+   2     let visitor = "world";
+   3     println!("Hello, {}!", visitor);
+   4 
+   5     for i in 1..=3 {
+   6         println!("Count: {}", i);
+   7     }
+   8 }
+$ bat -p fixtures/report.csv
+item,quantity,price
+notebook,12,3.50
+pencil,40,0.80
+ruler,7,1.25
+backpack,3,24.99
+$ bat --decorations=always --style=numbers,grid --terminal-width=64 fixtures/hello.rs | ./render.sh
+─────┬──────────────────────────────────────────────────────────
+   1 │ fn main() {
+   2 │     let visitor = "world";
+   3 │     println!("Hello, {}!", visitor);
+   4 │ 
+   5 │     for i in 1..=3 {
+   6 │         println!("Count: {}", i);
+   7 │     }
+   8 │ }
+─────┴──────────────────────────────────────────────────────────

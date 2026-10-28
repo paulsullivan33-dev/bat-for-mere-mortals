@@ -1,0 +1,28 @@
+$ export TERM=xterm-256color
+$ bat --help | grep -A4 -- "--pager <command>"
+      --pager <command>
+          Determine which pager is used. This option will override the PAGER and BAT_PAGER
+          environment variables. The default pager is 'less'. If you provide '--pager=builtin', use
+          the built-in 'minus' pager. To control when the pager is used, see the '--paging' option.
+          Example: '--pager "less -RF"'.
+$ rm -f spy-called.txt spy-input.bin
+$ ./pty-run.sh 'BAT_PAGER=./pager-spy.sh bat fixtures/farewell.py'
+$ cat spy-called.txt
+pager-spy called with args: 
+$ wc -c spy-input.bin
+2944 spy-input.bin
+$ sed -n l spy-input.bin | head -3 | cut -c1-100
+\033[38;5;246m\342\224\200\342\224\200\342\224\200\342\224\200\342\
+\224\200\342\224\254\342\224\200\342\224\200\342\224\200\342\224\200\
+\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\
+$ rm -f spy-called.txt spy-input.bin
+$ BAT_PAGER=./pager-spy.sh bat fixtures/farewell.py | head -3
+#!/usr/bin/env python3
+"""Print a short farewell message."""
+
+$ ls spy-called.txt
+ls: cannot access 'spy-called.txt': No such file or directory
+$ ./pty-run.sh 'BAT_PAGER=./pager-spy.sh bat --paging=never fixtures/farewell.py'
+$ ls spy-called.txt
+ls: cannot access 'spy-called.txt': No such file or directory
+$ rm -f spy-called.txt spy-input.bin

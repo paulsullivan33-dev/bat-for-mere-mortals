@@ -1,0 +1,26 @@
+$ bat --style=plain --color=always fixtures/greet | sed -n '5p' | sed -n l
+\033[38;5;231m    return "Hello, " + name + "!"\033[0m$
+$ bat --style=plain --color=always --language python fixtures/greet | sed -n '5p' | sed -n l | cut -c1-150
+\033[38;5;231m    \033[0m\033[38;5;203mreturn\033[0m\033[38;5;231m \
+\033[0m\033[38;5;186m"\033[0m\033[38;5;186mHello, \033[0m\033[38;5;18\
+6m"\033[0m\033[38;5;231m \033[0m\033[38;5;203m+\033[0m\033[38;5;231m \
+\033[0m\033[38;5;231mname\033[0m\033[38;5;231m \033[0m\033[38;5;203m+\
+\033[0m\033[38;5;231m \033[0m\033[38;5;186m"\033[0m\033[38;5;186m!\
+\033[0m\033[38;5;186m"\033[0m$
+$ bat --style=plain --color=always fixtures/stocktake | sed -n '2p' | sed -n l
+\033[38;5;231mA1,envelopes,230\033[0m$
+$ bat --list-languages | grep 'Separated Values'
+Separated Values:csv
+Tab Separated Values:tsv
+$ bat --style=plain --color=always --language csv fixtures/stocktake | sed -n '2p' | sed -n l | cut -c1-150
+\033[38;5;208mA1\033[0m\033[38;5;208m,\033[0m\033[38;5;81menvelopes\
+\033[0m\033[38;5;208m,\033[0m\033[38;5;141m230\033[0m$
+$ cp fixtures/greet greet.py
+$ bat --style=plain --color=always greet.py | sed -n '5p' | sed -n l | cut -c1-150
+\033[38;5;231m    \033[0m\033[38;5;203mreturn\033[0m\033[38;5;231m \
+\033[0m\033[38;5;186m"\033[0m\033[38;5;186mHello, \033[0m\033[38;5;18\
+6m"\033[0m\033[38;5;231m \033[0m\033[38;5;203m+\033[0m\033[38;5;231m \
+\033[0m\033[38;5;231mname\033[0m\033[38;5;231m \033[0m\033[38;5;203m+\
+\033[0m\033[38;5;231m \033[0m\033[38;5;186m"\033[0m\033[38;5;186m!\
+\033[0m\033[38;5;186m"\033[0m$
+$ rm greet.py

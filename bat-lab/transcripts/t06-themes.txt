@@ -1,0 +1,45 @@
+$ bat --list-themes | wc -l
+28
+$ bat --list-themes
+1337
+Catppuccin Frappe
+Catppuccin Latte
+Catppuccin Macchiato
+Catppuccin Mocha
+Coldark-Cold
+Coldark-Dark
+DarkNeon
+Dracula
+GitHub
+Monokai Extended
+Monokai Extended Bright
+Monokai Extended Light
+Monokai Extended Origin
+Nord
+OneHalfDark
+OneHalfLight
+Solarized (dark)
+Solarized (light)
+Sublime Snazzy
+TwoDark
+Visual Studio Dark+
+ansi
+base16
+base16-256
+gruvbox-dark
+gruvbox-light
+zenburn
+$ bat --style=plain --color=always fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;203mdef\033[0m\033[38;5;231m \033[0m\033[38;5;149mfarewell\
+\033[0m\033[38;5;231m(\033[0m\033[38;5;208mname\033[0m\033[38;5;231m)\
+\033[0m\033[38;5;231m:\033[0m$
+$ bat --style=plain --color=always --theme=GitHub fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;125mdef\033[0m\033[38;5;236m \033[0m\033[38;5;97mfarewell\
+\033[0m\033[38;5;236m(\033[0m\033[38;5;31mname\033[0m\033[38;5;236m)\
+\033[0m\033[38;5;236m:\033[0m$
+$ bat --style=plain --color=always --theme=ansi fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[35mdef\033[0m \033[34mfarewell\033[0m(\033[36mname\033[0m):$
+$ BAT_THEME=GitHub bat --style=plain --color=always fixtures/farewell.py | sed -n '7p' | sed -n l | cut -c1-120
+\033[38;5;125mdef\033[0m\033[38;5;236m \033[0m\033[38;5;97mfarewell\
+\033[0m\033[38;5;236m(\033[0m\033[38;5;31mname\033[0m\033[38;5;236m)\
+\033[0m\033[38;5;236m:\033[0m$

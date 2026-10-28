@@ -1,0 +1,19 @@
+$ bat --version
+bat 0.26.1 (979ba22)
+$ bat --help | head -12
+A cat(1) clone with syntax highlighting and Git integration.
+
+Usage: bat [OPTIONS] [FILE]...
+       bat <COMMAND>
+
+Arguments:
+  [FILE]...
+          File(s) to print / concatenate. Use a dash ('-') or no argument at all to read from
+          standard input.
+
+Options:
+  -A, --show-all
+$ less --version | head -1
+less 590 (GNU regular expressions)
+$ git --version
+git version 2.43.0

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Copy the built site to the web folder.
+set -e
+
+SRC="build/site"
+DEST="/var/www/example"
+
+echo "Deploying $SRC to $DEST"
+cp -r "$SRC"/. "$DEST"/
+echo "Done."

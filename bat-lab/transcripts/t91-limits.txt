@@ -1,0 +1,15 @@
+$ cat fixtures/broken.py
+def broken(:
+    return "unclosed
+$ bat --style=plain --color=always fixtures/broken.py | sed -n '1p' | sed -n l | cut -c1-130
+\033[38;5;203mdef\033[0m\033[38;5;231m \033[0m\033[38;5;149mbroken\
+\033[0m\033[38;5;231m(\033[0m\033[38;5;231m:\033[0m$
+$ cp /bin/true fixtures/truebin
+$ bat fixtures/truebin | head -c 16 | od -c | head -2
+0000000 177   E   L   F 002 001 001  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000020
+$ bat --decorations=always fixtures/truebin | ./render.sh
+─────┬──────────────────────────────────────────────────────────────────────────
+     │ File: fixtures/truebin   <BINARY>
+─────┴──────────────────────────────────────────────────────────────────────────
+$ rm fixtures/truebin
